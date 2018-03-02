@@ -7,7 +7,20 @@ class App extends CI_CONTROLLER{
 	}
 
 	function index(){
-		echo "hallo";
+		if($this->session->userdata('username',TRUE) && $this->session->userdata('level',TRUE)){
+			//Halaman dashboard
+
+			if($this->session->userdata('level') == 1 ){
+				
+				echo "Halaman Admin";
+			
+			}elseif($this->session->userdata('level') == 2){
+				echo "Halaman OPerator";
+			}
+
+		}else{
+			redirect('auth/login','refresh');
+		}
 	}
 
 	function hallonama($id = null){

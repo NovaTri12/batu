@@ -14,7 +14,7 @@ $attributes = array ('class'=> 'box login');
 $attributes1 = array ('class'=> 'boxBody');
 $btnLogin = array ('class'=> 'btnLogin');
 
-echo form_open('app/logincheck',$attributes,'class=form-horizontal');?>
+echo form_open('auth/processlogin',$attributes,'class=form-horizontal');?>
 <?php echo form_fieldset('',$attributes1);?>
 <?php echo "<label>username</label>"; echo form_input('username',$username,'placeholder=username');?>
 <?php echo "<label>Password</label>"; echo form_password('password',$password,'placeholder=password');?></br>
