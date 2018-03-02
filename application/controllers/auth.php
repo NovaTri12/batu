@@ -51,4 +51,9 @@ class Auth extends CI_CONTROLLER{
             echo "login gagal";
         }
     }
+
+    function logout(){
+        $this->session->sess_destroy();
+        redirect('auth/login','refresh');
+    }
 }
