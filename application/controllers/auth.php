@@ -10,24 +10,24 @@ class Auth extends CI_CONTROLLER{
     function index(){
        // $a = new $this->session();
 
-        if($this->session->userdata('username',TRUE)&& $this->session->userdata('level',TRUE)){
-
+        if($this->session->userdata('username',TRUE) && $this->session->userdata('level',TRUE)){
+            redirect('app','refresh');
         }else{
-           redirect('auth/login','refresh');
+            redirect('auth/login','refresh');
         }
     }
     function login(){
-        if ($this->session->userdata('username',TRUE) && $this->session->userdata('user_id',TRUE) && $this->session->userdata('remote_ip',TRUE) && $this->session->userdata['level']=='1'){ 
+        if ($this->session->userdata('username',TRUE) && $this->session->userdata('level',TRUE)){ 
 
-        //redirect('backend','refresh');
+        redirect('app','refresh');
         }else{
-        
-        }	
             $data['username'] =  $this->input->post('username',true);
             $data['password'] =  $this->input->post('password',true);	
             $this->load->view('login/login',$data);
+        }	
+            
         }
-
+   
     function processlogin(){
         $data = array(
                 'username'      => $this->input->post('username'),
@@ -46,9 +46,18 @@ class Auth extends CI_CONTROLLER{
             $this->session->set_userdata('id_pengguna',$id_pengguna);
             $this->session->set_userdata('username',$username);
             $this->session->set_userdata('level',$level);
-            redirect('app','refresh');
+            //redirect('app','refresh');
+            $msg = array(
+                'status' => 'success',
+                'pesan'  => 'Login Berhasil'
+            );
+            echo json_encode($msg);
         }else{
-            echo "login gagal";
+            $msg = array(
+                'status' => 'failed',
+                'pesan'  => 'Login Gagal'
+            );
+            echo json_encode($msg);
         }
     }
 

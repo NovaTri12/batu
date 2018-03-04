@@ -1,5 +1,5 @@
 <?php
-class Administrator extends CI_Controller{
+class Dashboard extends CI_Controller{
     function __construct(){
         parent:: __construct();
         $this->load->model('mlogin');
