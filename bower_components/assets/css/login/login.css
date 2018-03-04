@@ -11,7 +11,7 @@
   
 */
 body{
-  background:#eff3f6;
+  background:#7386D5;
 }
 .box
 {
@@ -159,5 +159,7 @@ footer#main{
 	bottom:10px;
 	text-align:center;
 	font:normal 11px/16px Arial, Helvetica, sans-serif;
-	width:100%;
+    width:100%;
+    color: #dde0e8;
+    font-size: 1em;
 }
