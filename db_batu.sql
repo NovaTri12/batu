@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
--- https://www.phpmyadmin.net/
+-- version 4.5.1
+-- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 02 Mar 2018 pada 03.53
--- Versi Server: 10.1.30-MariaDB
--- PHP Version: 5.6.33
+-- Generation Time: 05 Mar 2018 pada 03.01
+-- Versi Server: 10.1.13-MariaDB
+-- PHP Version: 5.6.23
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -36,6 +34,13 @@ CREATE TABLE `batu` (
   `foto` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data untuk tabel `batu`
+--
+
+INSERT INTO `batu` (`id_batu`, `id_tipebatu`, `nama_batu`, `tgl_input`, `foto`) VALUES
+(1, 1, 'mx09888-po01', '2018-03-05', 'compile.png');
+
 -- --------------------------------------------------------
 
 --
@@ -58,6 +63,14 @@ CREATE TABLE `level` (
   `level` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data untuk tabel `level`
+--
+
+INSERT INTO `level` (`id_level`, `level`) VALUES
+(1, 'ADMIN'),
+(2, 'OPERATOR');
+
 -- --------------------------------------------------------
 
 --
@@ -70,6 +83,13 @@ CREATE TABLE `pengguna` (
   `username` varchar(200) NOT NULL,
   `password` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `pengguna`
+--
+
+INSERT INTO `pengguna` (`id_pengguna`, `id_level`, `username`, `password`) VALUES
+(1, 1, 'admin', '21232f297a57a5a743894a0e4a801fc3');
 
 -- --------------------------------------------------------
 
@@ -96,6 +116,13 @@ CREATE TABLE `tipe_batu` (
   `id_tipebatu` int(10) NOT NULL,
   `tipe_batu` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `tipe_batu`
+--
+
+INSERT INTO `tipe_batu` (`id_tipebatu`, `tipe_batu`) VALUES
+(1, 'batu gerinda Mount Stone');
 
 --
 -- Indexes for dumped tables
@@ -149,38 +176,32 @@ ALTER TABLE `tipe_batu`
 -- AUTO_INCREMENT for table `batu`
 --
 ALTER TABLE `batu`
-  MODIFY `id_batu` int(10) NOT NULL AUTO_INCREMENT;
-
+  MODIFY `id_batu` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `dtl_pengguna`
 --
 ALTER TABLE `dtl_pengguna`
   MODIFY `id_dtl_pengguna` int(10) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `level`
 --
 ALTER TABLE `level`
-  MODIFY `id_level` int(10) NOT NULL AUTO_INCREMENT;
-
+  MODIFY `id_level` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `pengguna`
 --
 ALTER TABLE `pengguna`
-  MODIFY `id_pengguna` int(10) NOT NULL AUTO_INCREMENT;
-
+  MODIFY `id_pengguna` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `penggunaan_batu`
 --
 ALTER TABLE `penggunaan_batu`
   MODIFY `id_penggunaan` int(10) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `tipe_batu`
 --
 ALTER TABLE `tipe_batu`
-  MODIFY `id_tipebatu` int(10) NOT NULL AUTO_INCREMENT;
-
+  MODIFY `id_tipebatu` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
@@ -208,7 +229,6 @@ ALTER TABLE `pengguna`
 --
 ALTER TABLE `penggunaan_batu`
   ADD CONSTRAINT `penggunaan_batu_ibfk_1` FOREIGN KEY (`id_batu`) REFERENCES `batu` (`id_batu`);
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
