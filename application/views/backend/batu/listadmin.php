@@ -19,7 +19,7 @@
                                 <li><a href="#">Page</a></li>
                             </ul>
                         </div>
-                        <h2>Data Referensi Batu</h2>
+                        <h2>Data Batu</h2>
                     </div>
                     
                 </nav>
@@ -32,8 +32,9 @@
                     <thead>
                     <tr>
                         <th>NO</th>
-                        <th>Jenis Batu</th>
                         <th>Nama Batu</th>
+                        <th>Jenis Batu</th>
+                        
                         <th>Aksi</th>
                     </tr>
                     </thead>
@@ -48,8 +49,12 @@
                             ?>
                         <tr>
                             <td><?php echo $no++;?></td>
+                            <td>
+                            <a href="#" class="gambarBatu"><img src="<?php echo base_url();?>assets/images/upload/<?php echo $d->foto;?>" class="hide-image" style="width:400px; z-index: 100; position: absolute;display:none;" /><?php echo $d->nama_batu;?></a>
+                            </td>
                             <td><?php echo $d->tipe_batu;?></td>
-                            <td><?php echo $d->nama_batu;?></td>
+                            
+                            
                             <td></td>
                         </tr>
 

@@ -64,12 +64,14 @@ class App extends CI_CONTROLLER{
 	
 	function tambahbatu(){
 		if($this->session->userdata('username',TRUE) && $this->session->userdata('level',TRUE)){
-			if($this->session->userdata('level')== 1){
+			if($this->session->userdata('level') == 1){
 				//form tambah batu
 				$this->load->view('backend/header/header');
 				$this->load->view('backend/batu/tambahbatu');
 				$this->load->view('backend/footer/footer');
 			}
+		}else{
+			redirect('auth/login','refresh');
 		}
 	}
 
