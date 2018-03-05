@@ -122,3 +122,12 @@ $("#fotoUpload").change(function() {
         return false;
     }
 });
+
+//preview Gambar
+$(document).ready(function () {
+    $(".gambarBatu").hover(function(){
+    $(this).find('img').fadeIn();
+    }, function(){
+    $(this).find('img').fadeOut();
+  });
+});
