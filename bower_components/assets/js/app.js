@@ -182,8 +182,11 @@ function fnOpenNormalDialog() {
     });
 }
 
-$('#hpsBatu').click(fnOpenNormalDialog);
-
+//$('#hpsBatu').click(fnOpenNormalDialog);
+$('body').delegate('#hpsBatu','click',function(){
+    //alert("success");
+    fnOpenNormalDialog();
+});
 function callback(value) {
     if (value) {
         alert("Confirmed");
