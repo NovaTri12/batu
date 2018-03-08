@@ -2,8 +2,16 @@
 
 class App extends CI_CONTROLLER{
 	
+	
+	
+	
 	function __construct(){
 		parent::__construct();
+		//config site
+		
+			
+			
+		
 	}
 
 	function index(){
@@ -95,10 +103,38 @@ class App extends CI_CONTROLLER{
         }
         $this->output->set_content_type('application/json')->set_output(json_encode(array('status'=>$status,'msg'=>$msg)));
     }
-
+	//fungsi hapus batu
+	//data tidak benar-benar dihapus krn menggunakan metode softdel
+	function hapusbatu($id = null){
+		if($this->session->userdata('username',TRUE) && $this->session->userdata('level',TRUE)){
+			if($this->session->userdata('level')== 1){
+				if(isset($id)){
+					$this->db->where(array('id_batu' => $id));
+					$a = $this->db->get('batu');
+					if($a->num_rows() > 0 ){
+						$this->db->where(array('id_batu'=>$id));
+						$b = $this->db->update('batu',array('soft_delete'=>1));
+						if($b){
+							$pesan = array(
+								'status' => 'success',
+								'pesan'	 => 'Data sudah dihapus'
+							);	
+						}
+					}else{
+						$pesan = array(
+							'status' => 'failed',
+							'pesan'	 => 'Data tidak ditemukan'
+						);
+					}
+					echo json_encode($pesan);
+				}
+			}
+		}
+	}
 	function batu(){
 		if($this->session->userdata('username',TRUE) && $this->session->userdata('level',TRUE)){
 			if($this->session->userdata('level')== 1){
+				$this->db->where(array('soft_delete'=>0));
 				$this->db->join('tipe_batu','tipe_batu.id_tipebatu = batu.id_tipebatu','inner');
 				$data['isi'] = $this->appmodel->gettable('batu');
 				$this->load->view('backend/header/header');

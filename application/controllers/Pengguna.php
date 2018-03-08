@@ -16,4 +16,5 @@ class Pengguna extends CI_CONTROLLER{
 	function detil(){
 
 	}
+
 }

@@ -19,7 +19,7 @@
                                 <li><a href="#">Page</a></li>
                             </ul>
                         </div>
-                        <h2>Form Tambah Referensi Batu</h2>
+                        <h2>Form Tambah Referensi <?php echo $this->config->item('naon');?></h2>
                     
                     </div>
                 </nav>
@@ -28,7 +28,7 @@
                     
                     <table class="table">
 			            <tr>
-                            <td>Jenis Batu</td>
+                            <td>Jenis <?php echo $this->config->item('naon');?></td>
                             <td>:</td>
                             <td><input type="text" class="form-control" id="nmJenisBatu" /></td>
                         </tr>
