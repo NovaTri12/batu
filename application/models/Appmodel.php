@@ -155,4 +155,12 @@ class Appmodel extends CI_Model{
     }
   }
 
+  function getconfig($table = null, $key = null ){
+        if(isset($table)  && isset($key)){
+            $this->db->where($key);
+            $a = $this->db->get($table)->row();
+            return $a;
+        }
+  }
+
 }

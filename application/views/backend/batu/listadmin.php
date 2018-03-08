@@ -19,7 +19,7 @@
                                 <li><a href="#">Page</a></li>
                             </ul>
                         </div>
-                        <h2>Data Batu</h2>
+                        <h2>Data <?php echo $this->config->item('naon');?></h2>
                     </div>
                     
                 </nav>
@@ -32,8 +32,8 @@
                     <thead>
                     <tr>
                         <th>NO</th>
-                        <th>Nama Batu</th>
-                        <th>Jenis Batu</th>
+                        <th>Nama <?php echo $this->config->item('naon');?></th>
+                        <th>Jenis <?php echo $this->config->item('naon');?></th>
                         
                         <th>Aksi</th>
                     </tr>
@@ -55,7 +55,7 @@
                             <td><?php echo $d->tipe_batu;?></td>
                             
                             
-                            <td></td>
+                            <td><a href=<?php echo base_url();?>index.php/app/rwytbatu/<?php echo $d->id_batu;?>><btn class="btn btn-primary" title="Riwayat Penggunaan"> <span class="oi oi-clock"></span> </btn></a> <btn class="btn btn-danger" title="Hapus Data" id="hpsBatu" attr-link="<?php echo base_url();?>index.php/app/hapusbatu/<?php echo $d->id_batu;?>"><span class="oi oi-trash" ></span></btn></td>
                         </tr>
 
                         <?php
@@ -67,7 +67,7 @@
                     
                     </div>  
                 </div>
-               
+                <div id="dialog-confirm"></div>
 
                 </div>
                 

@@ -6,12 +6,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <title>Aplikasi Pencatatan penggunaan Batu</title>
+        <title><?php echo $this->config->item('site_name');?></title>
 
          <!-- Bootstrap CSS CDN -->
         <link rel="stylesheet" href="<?php echo base_url();?>bower_components/bootstrap/dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="<?php echo base_url();?>bower_components/datatables/media/css/dataTables.bootstrap4.min.css">
         <link href="<?php echo base_url();?>bower_components/jquery-ui/themes/base/jquery-ui.min.css" rel="stylesheet">
+        <link href="<?php echo base_url();?>bower_components/open-iconic/font/css/open-iconic-bootstrap.css" rel="stylesheet">
     
         <!-- Our Custom CSS -->
 
@@ -26,19 +27,19 @@
             <?php if($this->session->userdata('level')== 1){?>
             <nav id="sidebar">
                 <div class="sidebar-header">
-                    <h3>Aplikasi Penggunaan Batu</h3>
+                    <h3><?php echo $this->config->item('site_name');?></h3>
                 </div>
 
                 <ul class="list-unstyled components">
-                    <p>PT. Surya Selindo</p>
+                    <p><?php echo $this->config->item('company_name');?></p>
                     <li>
                         <a href="#">Beranda</a>
                     </li>
                     <li>
-                        <a href="#refSubmenu" data-toggle="collapse" aria-expanded="false">Referensi</a>
+                        <a href="#refSubmenu" data-toggle="collapse" aria-expanded="false">Menu Referensi</a>
                         <ul class="collapse list-unstyled" id="refSubmenu">
-                            <li><a href="<?php echo base_url();?>index.php/app/refbatu">Referensi Batu</a></li>
-                            <li><a href="<?php echo base_url();?>index.php/app/batu">Batu</a></li>
+                            <li><a href="<?php echo base_url();?>index.php/app/refbatu">Jenis <?php echo $this->config->item('naon');?></a></li>
+                            <li><a href="<?php echo base_url();?>index.php/app/batu"><?php echo $this->config->item('naon');?></a></li>
                             <li><a href="#">Pengguna</a></li>
                         </ul>
                     </li>

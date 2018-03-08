@@ -19,7 +19,7 @@
                                 <li><a href="#">Page</a></li>
                             </ul>
                         </div>
-                        <h2>Data Referensi Batu</h2>
+                        <h2>Data Referensi Jenis <?php echo $this->config->item('naon');?></h2>
                     </div>
                     
                 </nav>
@@ -32,7 +32,7 @@
                     <thead>
                     <tr>
                         <th>NO</th>
-                        <th>Jenis Batu</th>
+                        <th>Jenis <?php echo $this->config->item('naon');?> </th>
                         <th>Aksi</th>
                     </tr>
                     </thead>
