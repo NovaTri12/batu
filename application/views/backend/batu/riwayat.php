@@ -24,4 +24,24 @@
                     
                 </nav>
 
+                <div class="container">
+                    <table class="table table-striped">
+                        <tr>
+                            <td>Nama Alat</td>
+                            <td>:</td>
+                            <td><?php echo $dtl->nama_batu;?></td>
+                        </tr>
+                        <tr>
+                            <td>Kategori</td>
+                            <td>:</td>
+                            <td><?php echo $dtl->tipe_batu;?></td>
+                        </tr>
+                        <tr>
+                            <td>Foto</td>
+                            <td>:</td>
+                            <td><img src="<?php echo base_url();?>assets/images/upload/<?php echo $dtl->foto;?>" style="height:200px;"/></td>
+                        </tr>
+                    </table>
+                </div>
+
                 </div>
