@@ -164,7 +164,7 @@ function fnOpenNormalDialog() {
                             $.notify(obj.pesan,'success');
                            // alert($('#btnLogin').attr('attr-dashboard'));
                           // $("body").fadeOut(4500,window.location.href = 'batu');
-                          $("body").fadeOut(4500,window.location.href = 'batu');
+                          $("body").fadeOut(4500,window.location.href = $('#hpsBatu').attr('attr-redirect'));
                         }else if(obj.status == "failed"){
                            $.notify(obj.pesan,'warn');
                         }else if(obj.status == "empty"){
@@ -194,3 +194,12 @@ function callback(value) {
         alert("Rejected");
     }
 }
+
+//modal
+
+$(document).ready(function(){
+    var url = $('#modellink').attr('attr-url');
+    jQuery('#modellink').click(function(e) {
+        $('.modal-container').load(url);
+     });
+    });

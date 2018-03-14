@@ -140,10 +140,14 @@ class Appmodel extends CI_Model{
         return $this->db->get($table)->result_array();
     }
 
-    function get_autocomplete($q,$field,$table,$label,$value){
-    $this->db->select('*');
-    $this->db->like($field, $q);
-    $query = $this->db->get($table);
+    
+    function get_autocomplete($q,$field,$table,$label,$value,$key=null){
+    
+        $this->db->select('*');
+        $this->db->like($field, $q);
+        $this->db->where($key);
+        //$this->db->like
+        $query = $this->db->get($table);
     if($query->num_rows() > 0){
       foreach ($query->result_array() as $row){
         $new_row['label']=htmlentities(stripslashes($row[$label]));

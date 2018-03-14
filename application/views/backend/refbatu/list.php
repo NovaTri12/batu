@@ -48,7 +48,10 @@
                         <tr>
                             <td><?php echo $no++;?></td>
                             <td><?php echo $d->tipe_batu;?></td>
-                            <td></td>
+                            <td>
+
+                                    <btn class="btn btn-danger" title="Hapus Data" id="hpsBatu" attr-redirect="<?php echo base_url();?>index.php/app/refbatu" attr-link="<?php echo base_url();?>index.php/app/hapusrefbatu/<?php echo $d->id_tipebatu;?>"><span class="oi oi-trash" ></span></btn>
+                            </td>
                         </tr>
 
                         <?php
@@ -59,6 +62,7 @@
                     </table>
                     
                     </div>  
+                    <div id="dialog-confirm"></div>
                 </div>
                
 

@@ -42,6 +42,32 @@
                             <td><img src="<?php echo base_url();?>assets/images/upload/<?php echo $dtl->foto;?>" style="height:200px;"/></td>
                         </tr>
                     </table>
+                    <div class="line"></div>
+                    <div class="container">
+                        <div class="row">
+                            <span class="col-sm-4"><h4>Riwayat Penggunaan</h4></span> | 
+                            <span class="col-sm-6"><btn class="btn btn-primary" id="btnTambahRiwayat">Tambah</btn></span>
+                            </div>
+                            <br>
+                            <table class="table table-striped dataTable" id="table">
+                                <thead>
+                                    <tr>
+                                        <td>No</td>
+                                        <td>Tanggal</td>
+                                        <td>Waktu Mulai</td>
+                                        <td>Waktu Selesai</td>
+                                    </tr>
+                                </thead>
+                            </table>
+
+                    </div>
                 </div>
 
+                        <!--  -->
+                        
+                        <!--  -->
+
                 </div>
+
+
+                
