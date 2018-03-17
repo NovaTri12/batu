@@ -203,3 +203,16 @@ $(document).ready(function(){
         $('.modal-container').load(url);
      });
     });
+
+    $('#btnTambahRiwayat').on('click',function(a){
+        a.preventDefault();
+        //alert('tombol ditekan');
+        //    var url = $(this).attr('href');
+        var url = $(this).attr('attr-href');
+        var dialog = $('#NewsModal').clone();
+
+        dialog.load(url, function(){
+            dialog.modal('show');
+        });
+
+    });
