@@ -46,7 +46,7 @@
                     <div class="container">
                         <div class="row">
                             <span class="col-sm-4"><h4>Riwayat Penggunaan</h4></span> | 
-                            <span class="col-sm-6"><btn class="btn btn-primary" id="btnTambahRiwayat">Tambah</btn></span>
+                            <span class="col-sm-6"><btn class="btn btn-primary" id="btnTambahRiwayat" attr-href="<?php echo base_url();?>index.php/riwayat/tambah">Tambah</btn></span>
                             </div>
                             <br>
                             <table class="table table-striped dataTable" id="table">
@@ -64,7 +64,21 @@
                 </div>
 
                         <!--  -->
-                        
+                        <div id="NewsModal" class="modal modal-dialog-lg fade" tabindex="-1" role="dialog" data-
+ajaxload="true" aria-labelledby="newsLabel" aria-hidden="true">
+
+
+    </div>
+
+       <div id="modal" class="modal modal-dialog-lg fade" tabindex="-1" role="dialog" data-
+ajaxload="true" aria-labelledby="newsLabel" aria-hidden="true">
+
+        
+    </div>
+
+    <div id="variant-modal" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
+    <a id="add-variant" class="btn btn-default" data-target="#variant-modal" data-toggle="modal" href="remote.php">Add a variant</a>
+   
                         <!--  -->
 
                 </div>
