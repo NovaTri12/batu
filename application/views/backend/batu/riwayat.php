@@ -66,8 +66,19 @@
                         <!--  -->
                         <div id="NewsModal" class="modal modal-dialog-lg fade" tabindex="-1" role="dialog" data-
 ajaxload="true" aria-labelledby="newsLabel" aria-hidden="true">
+
+
+    </div>
+
+       <div id="modal" class="modal modal-dialog-lg fade" tabindex="-1" role="dialog" data-
+ajaxload="true" aria-labelledby="newsLabel" aria-hidden="true">
+
         
     </div>
+
+    <div id="variant-modal" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
+    <a id="add-variant" class="btn btn-default" data-target="#variant-modal" data-toggle="modal" href="remote.php">Add a variant</a>
+   
                         <!--  -->
 
                 </div>

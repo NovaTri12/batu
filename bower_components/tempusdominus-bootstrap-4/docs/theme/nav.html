@@ -1,0 +1,33 @@
+<header class="navbar navbar-light navbar-toggleable-md bd-navbar">
+    <nav class="container">
+        <div class="d-flex justify-content-between hidden-lg-up">
+            <a class="navbar-brand" href="{{ nav.homepage_url }}">{{ config.site_name }}</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bd-main-nav" aria-controls="bd-main-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bd-main-nav">
+            <ul class="nav navbar-nav">
+                {% for nav_item in nav %}
+                {% if nav_item.children %}
+                <li class="dropdown{% if nav_item.active %} active{% endif %}">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ nav_item.title }} <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        {% for nav_item in nav_item.children %}
+                        <li {% if nav_item.active %}class="active"{% endif %}>
+                            <a class="nav-item nav-link" href="{{ nav_item.url }}">{{ nav_item.title }}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                {% else %}
+                <li class="nav-item {% if nav_item.active %}active{% endif %}">
+                    <a class="nav-item nav-link" href="{{ nav_item.url }}">{{ nav_item.title }}</a>
+                </li>
+                {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+    </nav>
+</header>
