@@ -2,8 +2,16 @@
 
 class App extends CI_CONTROLLER{
 	
+	
+	
+	
 	function __construct(){
 		parent::__construct();
+		//config site
+		
+			
+			
+		
 	}
 
 	function index(){
@@ -32,7 +40,8 @@ class App extends CI_CONTROLLER{
 			if($this->session->userdata('level')== 1){
 				
 				$data = array(
-						'tipe_batu' => $this->input->post('tipe_batu')
+						'tipe_batu' => $this->input->post('tipe_batu'),
+						'soft_delete' => 0
 					);
 					if(!empty($data['tipe_batu'])){
 					$a = $this->db->insert('tipe_batu',$data);
@@ -95,10 +104,64 @@ class App extends CI_CONTROLLER{
         }
         $this->output->set_content_type('application/json')->set_output(json_encode(array('status'=>$status,'msg'=>$msg)));
     }
-
+	//fungsi hapus batu
+	//data tidak benar-benar dihapus krn menggunakan metode softdel
+	function hapusrefbatu($id = null){
+		if($this->session->userdata('username',TRUE) && $this->session->userdata('level',TRUE)){
+			if($this->session->userdata('level')== 1){
+				if(isset($id)){
+					$this->db->where(array('id_tipebatu' => $id));
+					$a = $this->db->get('tipe_batu');
+					if($a->num_rows() > 0 ){
+						$this->db->where(array('id_tipebatu'=>$id));
+						$b = $this->db->update('tipe_batu',array('soft_delete'=>1));
+						if($b){
+							$pesan = array(
+								'status' => 'success',
+								'pesan'	 => 'Data sudah dihapus'
+							);	
+						}
+					}else{
+						$pesan = array(
+							'status' => 'failed',
+							'pesan'	 => 'Data tidak ditemukan'
+						);
+					}
+					echo json_encode($pesan);
+				}
+			}
+		}
+	}
+	function hapusbatu($id = null){
+		if($this->session->userdata('username',TRUE) && $this->session->userdata('level',TRUE)){
+			if($this->session->userdata('level')== 1){
+				if(isset($id)){
+					$this->db->where(array('id_batu' => $id));
+					$a = $this->db->get('batu');
+					if($a->num_rows() > 0 ){
+						$this->db->where(array('id_batu'=>$id));
+						$b = $this->db->update('batu',array('soft_delete'=>'1'));
+						if($b){
+							$pesan = array(
+								'status' => 'success',
+								'pesan'	 => 'Data sudah dihapus'
+							);	
+						}
+					}else{
+						$pesan = array(
+							'status' => 'failed',
+							'pesan'	 => 'Data tidak ditemukan'
+						);
+					}
+					echo json_encode($pesan);
+				}
+			}
+		}
+	}
 	function batu(){
 		if($this->session->userdata('username',TRUE) && $this->session->userdata('level',TRUE)){
 			if($this->session->userdata('level')== 1){
+				$this->db->where(array('batu.soft_delete'=>'0','tipe_batu.soft_delete'=>0));
 				$this->db->join('tipe_batu','tipe_batu.id_tipebatu = batu.id_tipebatu','inner');
 				$data['isi'] = $this->appmodel->gettable('batu');
 				$this->load->view('backend/header/header');
@@ -136,7 +199,8 @@ class App extends CI_CONTROLLER{
 					'nama_batu'	=> $this->input->post('nmBatu'),
 					'id_tipebatu' => $this->input->post('tpBatuVal'),
 					'foto'			=> $dataupload['file_name'],
-					'tgl_input'		=> date('Y-m-d')
+					'tgl_input'		=> date('Y-m-d'),
+					'soft_delete'	=> '0'
 				);
 
 				//echo json_encode($data);
@@ -158,8 +222,9 @@ class App extends CI_CONTROLLER{
 	}
 	function get_batu(){
 		if (isset($_GET['term'])){
+			//$this->db->where(array('soft_delete'=>0));
 			$q = strtolower($_GET['term']);
-			$this->appmodel->get_autocomplete($q,'tipe_batu','tipe_batu','tipe_batu','id_tipebatu');
+			$this->appmodel->get_autocomplete($q,'tipe_batu','tipe_batu','tipe_batu','id_tipebatu',array('soft_delete'=>0));
 		  }
 	}
 
@@ -171,6 +236,7 @@ class App extends CI_CONTROLLER{
 				//halaman referensi jenis batu
 				if(!isset($id)){
 					//halaman table referensi batu
+					$this->db->where(array('soft_delete'=> 0));
 					$data['isi'] = $this->appmodel->gettable('tipe_batu');
 					$this->load->view('backend/header/header');
 					$this->load->view('backend/refbatu/list',$data);
@@ -189,7 +255,45 @@ class App extends CI_CONTROLLER{
 			}else{
 					redirect('auth/login','refresh');
 			}
-
+			
+		}else{
+			redirect('auth/login','refresh');
 		}
+	}
+	
+	function rwytbatu($id = null){
+		if($this->session->userdata('username',TRUE) && $this->session->userdata('level',TRUE)){
+
+			if($this->session->userdata('level')== 1){
+				//=================
+				if(isset($id)){
+					//detil batu
+					
+					$this->db->where(array('id_batu'=>$id));
+					$this->db->join('tipe_batu','tipe_batu.id_tipebatu=batu.id_tipebatu','inner');
+					$data['dtl'] = $this->db->get('batu')->row();
+
+					//list riwayat penggunaan
+					$this->db->where(array('batu.id_batu'=>$id));
+					//$this->db->join('tipe_batu','tipe_batu.id_tipebatu=batu.id_tipebatu','inner');
+					$this->db->join('penggunaan_batu','batu.id_batu=penggunaan_batu.id_batu','left');
+					$data['rwyt'] = $this->appmodel->gettable('batu');
+
+					//load view
+					$this->load->view('backend/header/header',$data);
+					$this->load->view('backend/batu/riwayat',$data);
+					$this->load->view('backend/footer/footer');
+
+				}
+			}else{
+				redirect('auth/login','refresh');
+			}
+		}else{
+			redirect('auth/login','refresh');
+		}
+	}
+
+	function formriwayat(){
+		$this->load->view('backend/batu/form/tambahriwayat');
 	}
 }

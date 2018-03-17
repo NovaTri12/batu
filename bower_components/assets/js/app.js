@@ -131,3 +131,75 @@ $(document).ready(function () {
     $(this).find('img').fadeOut();
   });
 });
+
+
+//============hapus batu
+
+function fnOpenNormalDialog() {
+    $("#dialog-confirm").html("Yakin hapus data ini?");
+
+    // Define the Dialog and its properties.
+    $("#dialog-confirm").dialog({
+        resizable: false,
+        modal: true,
+        title: "Konfirmasi Hapus",
+        height: 250,
+        width: 400,
+        buttons: {
+            "Yes": function () {
+                $(this).dialog('close');
+                //callback(true);
+                $.ajax({
+                    url     : $('#hpsBatu').attr('attr-link'),
+                    type    : "POST",
+                    dataType: 'json',  // what to expect back from the PHP script, if anything
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success     : function(result){
+                        var obj = jQuery.parseJSON(JSON.stringify(result));
+
+                        if(obj.status == "success"){
+                            //alert(obj.pesan);
+                            $.notify(obj.pesan,'success');
+                           // alert($('#btnLogin').attr('attr-dashboard'));
+                          // $("body").fadeOut(4500,window.location.href = 'batu');
+                          $("body").fadeOut(4500,window.location.href = $('#hpsBatu').attr('attr-redirect'));
+                        }else if(obj.status == "failed"){
+                           $.notify(obj.pesan,'warn');
+                        }else if(obj.status == "empty"){
+                            $.notify(obj.pesan,'warn');
+                        }
+                    }
+
+                });
+            },
+                "No": function () {
+                $(this).dialog('close');
+                //callback(false);
+            }
+        }
+    });
+}
+
+//$('#hpsBatu').click(fnOpenNormalDialog);
+$('body').delegate('#hpsBatu','click',function(){
+    //alert("success");
+    fnOpenNormalDialog();
+});
+function callback(value) {
+    if (value) {
+        alert("Confirmed");
+    } else {
+        alert("Rejected");
+    }
+}
+
+//modal
+
+$(document).ready(function(){
+    var url = $('#modellink').attr('attr-url');
+    jQuery('#modellink').click(function(e) {
+        $('.modal-container').load(url);
+     });
+    });

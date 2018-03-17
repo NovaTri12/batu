@@ -18,7 +18,7 @@
                                 <li><a href="#">Page</a></li>
                             </ul>
                         </div>
-                        <h2>Tambah Data Batu</h2>
+                        <h2>Tambah Data <?php echo $this->config->item('naon');?> Baru</h2>
                     </div>
                     
                 </nav>
@@ -27,14 +27,14 @@
                     <form enctype="multipart/form-data" id="formTambahBatu" >
                     <table class="table table-striped">
                         <tr>
-                            <td>Nama Batu</td>
+                            <td>Nama <?php echo $this->config->item('naon');?></td>
                             <td>:</td>
                             <td><input type="text" class="form-control" name="nmBatu" id="nmBatu"/>
                             
                             </td>
                         </tr>
                         <tr>
-                            <td>Tipe Batu</td>
+                            <td>Tipe <?php echo $this->config->item('naon');?></td>
                             <td>:</td>
                             <td><input type="text" class="form-control" id="tpBatu" data-link="<?php echo base_url();?>index.php/app/get_batu/" />
                             <input type="hidden" id="tpBatuVal" name="tpBatuVal" value="" />

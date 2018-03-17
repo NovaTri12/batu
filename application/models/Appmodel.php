@@ -140,10 +140,14 @@ class Appmodel extends CI_Model{
         return $this->db->get($table)->result_array();
     }
 
-    function get_autocomplete($q,$field,$table,$label,$value){
-    $this->db->select('*');
-    $this->db->like($field, $q);
-    $query = $this->db->get($table);
+    
+    function get_autocomplete($q,$field,$table,$label,$value,$key=null){
+    
+        $this->db->select('*');
+        $this->db->like($field, $q);
+        $this->db->where($key);
+        //$this->db->like
+        $query = $this->db->get($table);
     if($query->num_rows() > 0){
       foreach ($query->result_array() as $row){
         $new_row['label']=htmlentities(stripslashes($row[$label]));
@@ -153,6 +157,14 @@ class Appmodel extends CI_Model{
       }
       echo json_encode($row_set); //format the array into json data
     }
+  }
+
+  function getconfig($table = null, $key = null ){
+        if(isset($table)  && isset($key)){
+            $this->db->where($key);
+            $a = $this->db->get($table)->row();
+            return $a;
+        }
   }
 
 }

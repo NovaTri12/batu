@@ -19,7 +19,7 @@
                                 <li><a href="#">Page</a></li>
                             </ul>
                         </div>
-                        <h2>Data Referensi Batu</h2>
+                        <h2>Data Referensi Jenis <?php echo $this->config->item('naon');?></h2>
                     </div>
                     
                 </nav>
@@ -32,7 +32,7 @@
                     <thead>
                     <tr>
                         <th>NO</th>
-                        <th>Jenis Batu</th>
+                        <th>Jenis <?php echo $this->config->item('naon');?> </th>
                         <th>Aksi</th>
                     </tr>
                     </thead>
@@ -48,7 +48,10 @@
                         <tr>
                             <td><?php echo $no++;?></td>
                             <td><?php echo $d->tipe_batu;?></td>
-                            <td></td>
+                            <td>
+
+                                    <btn class="btn btn-danger" title="Hapus Data" id="hpsBatu" attr-redirect="<?php echo base_url();?>index.php/app/refbatu" attr-link="<?php echo base_url();?>index.php/app/hapusrefbatu/<?php echo $d->id_tipebatu;?>"><span class="oi oi-trash" ></span></btn>
+                            </td>
                         </tr>
 
                         <?php
@@ -59,6 +62,7 @@
                     </table>
                     
                     </div>  
+                    <div id="dialog-confirm"></div>
                 </div>
                
 
