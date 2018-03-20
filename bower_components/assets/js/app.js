@@ -1,3 +1,18 @@
+$.fn.datetimepicker.Constructor.Default = $.extend({}, $.fn.datetimepicker.Constructor.Default, {
+    icons: {
+        time: 'oi oi-clock',
+        date: 'oi oi-calendar',
+        up: 'oi oi-arrow-up',
+        down: 'oi oi-arrow-down',
+        previous: 'oi oi-chevron-left',
+        next: 'oi oi-chevron-right',
+        today: 'oi oi-calendar-check-o',
+        clear: 'oi oi-trash',
+        close: 'oi oi-times'
+    } });
+
+
+
 $('#btnLogin').on('click',function(a){
     //alert("btn clicked");
     a.preventDefault();
@@ -244,10 +259,11 @@ $(document).ready(function(){
                             dateFormat: 'yy-mm-dd'
                         });
                         $('#jamMulai').datetimepicker({
-                            format: 'LT'
+                            
+                            format: 'H:mm'
                         });
                         $('#datetimepicker5').datetimepicker({
-                            format: 'LT'
+                            format: 'H:mm'
                         });
                     });
                    
@@ -257,7 +273,7 @@ $(document).ready(function(){
                  dialog.on('hidden.bs.modal',function(){
                      //alert("ditutup");
                      location.reload();
-                 })
+                 });
 
 
                
