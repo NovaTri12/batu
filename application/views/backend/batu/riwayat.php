@@ -45,8 +45,8 @@
                     <div class="line"></div>
                     <div class="container">
                         <div class="row">
-                            <span class="col-sm-4"><h4>Riwayat Penggunaan</h4></span> | 
-                            <span class="col-sm-6"><btn class="btn btn-primary" id="btnTambahRiwayat" attr-href="<?php echo base_url();?>index.php/riwayat/tambah">Tambah</btn></span>
+                            <span class="col-sm-8"><h3>Total Waktu Penggunaan : <?php echo secToJam($jumlah->total_waktu);?></h3></span> | 
+                            <span class="col-sm-2"><btn class="btn btn-primary" id="btnTambahRiwayat" attr-href="<?php echo base_url();?>index.php/riwayat/tambah/<?php echo $dtl->id_batu;?>">Tambah</btn></span>
                             </div>
                             <br>
                             <table class="table table-striped dataTable" id="table">
@@ -54,10 +54,32 @@
                                     <tr>
                                         <td>No</td>
                                         <td>Tanggal</td>
+                                        <td>Mesin</td>
                                         <td>Waktu Mulai</td>
                                         <td>Waktu Selesai</td>
                                     </tr>
                                 </thead>
+                                <tbody>
+                                    <?php
+                                        if(!empty($rwyt)){
+                                            $no = 1;
+                                            foreach($rwyt as $r){
+                                                ?>
+                                    <tr>
+                                        <td><?php echo $no++;?></td>
+                                        <td><?php echo $r->tgl_penggunaan;?></td>
+                                        <td><?php echo $r->nama_mesin;?></td>
+                                        <td><?php echo $r->jam_mulai;?></td>
+                                        <td><?php echo $r->jam_selesai;?></td>
+                                    </tr>  
+
+                                    <?php 
+                                            }
+                                        }
+
+                                    ?>
+
+                                </tbody>
                             </table>
 
                     </div>
@@ -76,10 +98,7 @@ ajaxload="true" aria-labelledby="newsLabel" aria-hidden="true">
         
     </div>
 
-    <div id="variant-modal" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
-    <a id="add-variant" class="btn btn-default" data-target="#variant-modal" data-toggle="modal" href="remote.php">Add a variant</a>
-   
-                        <!--  -->
+    
 
                 </div>
 

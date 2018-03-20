@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50532
 File Encoding         : 65001
 
-Date: 2018-03-17 08:32:35
+Date: 2018-03-20 09:44:55
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -81,11 +81,13 @@ CREATE TABLE `mesin` (
   `keterangan` text,
   `soft_delete` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_mesin`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of mesin
 -- ----------------------------
+INSERT INTO `mesin` VALUES ('1', 'mesin1', null, '0');
+INSERT INTO `mesin` VALUES ('2', 'mesin2', null, null);
 
 -- ----------------------------
 -- Table structure for pengguna
@@ -117,23 +119,32 @@ CREATE TABLE `penggunaan_batu` (
   `id_mesin` int(10) DEFAULT NULL,
   `id_penggunaan` int(10) NOT NULL AUTO_INCREMENT,
   `id_batu` int(10) NOT NULL,
+  `jam_mulai` varchar(20) DEFAULT NULL,
+  `jam_selesai` varchar(20) DEFAULT NULL,
   `tgl_penggunaan` varchar(10) DEFAULT NULL,
   `waktu_penggunaan` int(10) DEFAULT NULL,
   `foto` text,
   `ket` text,
   `id_pengguna` int(10) DEFAULT NULL,
+  `soft_delete` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_penggunaan`),
   KEY `id_batu` (`id_batu`),
   KEY `id_pengguna` (`id_pengguna`),
   KEY `id_mesin` (`id_mesin`) USING BTREE,
-  CONSTRAINT `penggunaan_batu_ibfk_3` FOREIGN KEY (`id_mesin`) REFERENCES `mesin` (`id_mesin`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `penggunaan_batu_ibfk_1` FOREIGN KEY (`id_batu`) REFERENCES `batu` (`id_batu`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `penggunaan_batu_ibfk_2` FOREIGN KEY (`id_pengguna`) REFERENCES `pengguna` (`id_pengguna`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  CONSTRAINT `penggunaan_batu_ibfk_2` FOREIGN KEY (`id_pengguna`) REFERENCES `pengguna` (`id_pengguna`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `penggunaan_batu_ibfk_3` FOREIGN KEY (`id_mesin`) REFERENCES `mesin` (`id_mesin`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of penggunaan_batu
 -- ----------------------------
+INSERT INTO `penggunaan_batu` VALUES ('1', '7', '18', '2018-03-20 9:11:54', '2018-03-20 10:09:57', '2018-03-20', '3483', null, null, '1', '0');
+INSERT INTO `penggunaan_batu` VALUES ('1', '8', '18', '2018-03-20 11:12:08', '2018-03-20 13:12:12', '2018-03-20', '7204', null, null, '1', '0');
+INSERT INTO `penggunaan_batu` VALUES ('1', '9', '18', '2018-03-20 11:12:08', '2018-03-20 13:12:12', '2018-03-20', '7204', null, null, '1', '0');
+INSERT INTO `penggunaan_batu` VALUES ('1', '10', '18', '2018-03-20 11:13:17', '2018-03-20 12:13:21', '2018-03-20', '3604', null, null, '1', '0');
+INSERT INTO `penggunaan_batu` VALUES ('1', '11', '18', '2018-03-20 10:14:04', '2018-03-20 12:14:08', '2018-03-20', '7204', null, null, '1', '0');
+INSERT INTO `penggunaan_batu` VALUES ('2', '12', '18', '2018-03-20 9:41:32', '2018-03-20 10:41:34', '2018-03-20', '3602', null, null, '1', '0');
 
 -- ----------------------------
 -- Table structure for settings

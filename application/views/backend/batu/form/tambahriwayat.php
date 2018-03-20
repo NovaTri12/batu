@@ -11,7 +11,7 @@
       <form>
         <div class="form-group">
           <label for="Tanggal">Tanggal</label>
-          
+          <input type="hidden" id="id_batu" value="<?php echo $id_batu;?>"/>
           <input type="text" class="form-control" id="Tanggal" placeholder="Tanggal Penggunaan" />
        </div>
       <div class="form-group">
@@ -28,13 +28,14 @@
           
           <input type="text" class="form-control datetimepicker-input" id="datetimepicker5" data-toggle="datetimepicker" data-target="#datetimepicker5"/>
       </div>
-      </form>
+      
 
 
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" attr-link="<?php echo base_url();?>index.php/riwayat/aksitambah">Save changes</button>
+        <button type="button" class="btn btn-primary" id="btnTambahPenggunaan" attr-link="<?php echo base_url();?>index.php/riwayat/aksitambah">Save changes</button>
       </div>
+      </form>
     </div>
   </div>
