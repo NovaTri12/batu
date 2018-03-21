@@ -1,3 +1,4 @@
+
 $('#btnLogin').on('click',function(a){
     //alert("btn clicked");
     a.preventDefault();
@@ -244,20 +245,59 @@ $(document).ready(function(){
                             dateFormat: 'yy-mm-dd'
                         });
                         $('#jamMulai').datetimepicker({
-                            format: 'LT'
+                            dateFormat: 'yy-mm-dd hh:mm:ss',
+                            format: 'YYYY-MM-DD H:mm:ss'
                         });
                         $('#datetimepicker5').datetimepicker({
-                            format: 'LT'
+                            dateFormat: 'yy-mm-dd hh:mm:ss',
+                            format: 'YYYY-MM-DD H:mm:ss'
                         });
                     });
-                   
+                    // Button Tambah
+                    $('#btnTambahPenggunaan').on('click',function(a){
+                        a.preventDefault();
+                        //alert('TOmbol tambah di click');
+                        //var form_data = new FormData();
+                        $.ajax({
+                            url: $(this).attr('attr-link'), // point to server-side PHP script
+                            dataType: 'json',  // what to expect back from the PHP script, if anything
+                            cache: false,
+                           // contentType: false,
+                            //processData: false,
+                            data: {
+                                'id_batu'           : $('#id_batu').val(),
+                                'tgl_penggunaan'    : $('#Tanggal').val(),
+                                'jam_mulai'         : $('#jamMulai').val(), 
+                                'jam_selesai'       : $('#datetimepicker5').val(),
+                                'id_mesin'          : $('#id_mesin').val()
+                            },
+                            type: 'post',
+                            success: function(result){
+                                //alert(php_script_response); // display response from the PHP script, if any
+                                var obj = jQuery.parseJSON(JSON.stringify(result));
+                                
+                                if(obj.status == "success"){
+                                    //alert(obj.pesan);
+                                 $.notify(obj.pesan,'success');
+                                   // alert($('#btnLogin').attr('attr-dashboard'));
+                                   location.reload();                                  
+                                }else if(obj.status == "failed"){
+                                   $.notify(obj.pesan,'warn');
+                                }else if(obj.status == "empty"){
+                                    $.notify(obj.pesan,'warn');
+                                }
+                            }
+                        });
+
+
+                    });
                      
                  });
-
+//======================================================
                  dialog.on('hidden.bs.modal',function(){
                      //alert("ditutup");
                      location.reload();
-                 })
+                 });
 
 
                

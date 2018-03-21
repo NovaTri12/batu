@@ -277,8 +277,14 @@ class App extends CI_CONTROLLER{
 					$this->db->where(array('batu.id_batu'=>$id));
 					//$this->db->join('tipe_batu','tipe_batu.id_tipebatu=batu.id_tipebatu','inner');
 					$this->db->join('penggunaan_batu','batu.id_batu=penggunaan_batu.id_batu','left');
+					$this->db->join('mesin','mesin.id_mesin = penggunaan_batu.id_mesin','inner');
 					$data['rwyt'] = $this->appmodel->gettable('batu');
-
+					// total waktu penggunaan
+					$this->db->where(array('id_batu'=>$id));
+					$this->db->select('SUM(waktu_penggunaan) as total_waktu');
+					//$this->db->from('penggunaan_batu');
+					
+					$data['jumlah'] = $this->db->get('penggunaan_batu')->row();
 					//load view
 					$this->load->view('backend/header/header',$data);
 					$this->load->view('backend/batu/riwayat',$data);
